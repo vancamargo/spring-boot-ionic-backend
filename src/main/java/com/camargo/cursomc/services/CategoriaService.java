@@ -3,10 +3,12 @@ package com.camargo.cursomc.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.camargo.cursomc.domain.Categoria;
 import com.camargo.cursomc.repositories.CategoriaRepository;
+import com.camargo.cursomc.services.exceptions.DataIntegrityException;
 import com.camargo.cursomc.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -32,4 +34,16 @@ public class CategoriaService {
 		find(obj.getId());
 		return repo.save(obj);
 	}
+	
+	public void delete(Integer id) {
+		find(id);
+		try {
+		repo.deleteById(id);
+		}
+		catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityException("Nãoé possivel excluir categorias que tem produtos");
+		}
+	}
+	
+
 }
