@@ -2,6 +2,10 @@ package com.camargo.cursomc.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
 import com.camargo.cursomc.domain.Categoria;
 
 public class CategoriaDTO implements Serializable {
@@ -9,6 +13,8 @@ public class CategoriaDTO implements Serializable {
 	
 
 	private Integer id;
+	@NotEmpty(message="Preenchimento Obrigatorio")
+	@Length(min=5, max=80, message="O tamanho deve ser entre e 5 e 80 caracteres")
 	private String nome;
 	
 	public CategoriaDTO() {
