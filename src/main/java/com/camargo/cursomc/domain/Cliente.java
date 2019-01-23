@@ -58,9 +58,21 @@ public class Cliente  implements Serializable{
 		this.nome = nome;
 		this.email = email;
 		this.cpfoucnpj = cpfoucnpj;
-		this.tipo = tipo.getCod();
+		this.tipo = (tipo==null) ? null : tipo.getCod();
 	}
 	
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public void setTipo(Integer tipo) {
+		this.tipo = tipo;
+	}
+
+	public void setTelefones(Set<String> telefones) {
+		this.telefones = telefones;
+	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -102,6 +114,10 @@ public class Cliente  implements Serializable{
 
 	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 
